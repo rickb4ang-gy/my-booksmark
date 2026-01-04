@@ -1,64 +1,14 @@
+/* =========================
+   Global
+========================= */
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-               "Helvetica Neue", Arial, "PingFang SC", "Microsoft YaHei",
-               sans-serif;
+               "Helvetica Neue", Arial, "PingFang SC",
+               "Microsoft YaHei", sans-serif;
   background-color: #f9fafc;
   color: #222;
-}
-
-/* Header */
-header {
-  max-width: 1200px;
-  margin: 60px auto 40px;
-  padding: 0 40px;
-}
-
-h1 {
-  font-size: 32px;
-  margin-bottom: 6px;
-}
-
-.subtitle {
-  color: #666;
-  font-size: 14px;
-}
-
-/* Grid layout */
-.grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 24px;
-}
-
-/* Card */
-.card {
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 20px 22px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-}
-
-.card h2 {
-  font-size: 18px;
-  margin-bottom: 12px;
-  padding-bottom: 6px;
-  border-bottom: 2px solid #1e6bd6;
-  color: #1e6bd6;
-}
-
-/* List */
-ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-li {
-  margin: 10px 0;
 }
 
 a {
@@ -70,26 +20,108 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Footer */
-footer {
-  max-width: 1200px;
-  margin: 60px auto 30px;
-  padding: 0 40px;
-  font-size: 12px;
-  color: #888;
+/* =========================
+   Header
+========================= */
+
+header {
+  max-width: 1400px;
+  margin: 60px auto 40px;
+  padding: 0 48px;
 }
-/* Group inside card */
+
+h1 {
+  font-size: 32px;
+  margin: 0 0 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+}
+
+/* =========================
+   Main Grid (3–4 columns)
+========================= */
+
+.grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 28px;
+}
+
+/* =========================
+   Card (一级分类)
+========================= */
+
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 22px 24px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  font-size: 18px;
+  margin: 0 0 14px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1e6bd6;
+  color: #1e6bd6;
+}
+
+/* =========================
+   Group (二级分类)
+========================= */
+
 .group {
-  margin-top: 16px;
+  margin-top: 18px;
+  padding-top: 10px;
+  border-top: 1px solid #e6eaf2;
+}
+
+.group:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
 }
 
 .group h3 {
   font-size: 14px;
-  margin-bottom: 6px;
+  margin: 0 0 8px;
   color: #444;
   font-weight: 600;
 }
 
-.group ul li {
-  margin: 8px 0;
+/* =========================
+   Group Links (multi-column)
+========================= */
+
+.group-links {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+
+  /* 核心：自动分列 */
+  column-width: 220px;
+  column-gap: 32px;
+}
+
+.group-links li {
+  margin: 6px 0;
+  break-inside: avoid;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+  max-width: 1400px;
+  margin: 60px auto 30px;
+  padding: 0 48px;
+  font-size: 12px;
+  color: #888;
 }
