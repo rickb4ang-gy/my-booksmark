@@ -1,78 +1,109 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <title>个人网址收藏</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>个人网址门户</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
-  <header>
-    <h1>我的网址收藏</h1>
-    <p class="subtitle">Personal Bookmark Portal</p>
-  </header>
+<header class="site-header">
+  <h1>我的导航门户</h1>
+</header>
 
-  <section class="card">
-  <h2>学术 / 研究</h2>
+<div class="content">
 
-  <div class="group">
-    <h3>文献数据库</h3>
-    <ul class="group-links">
-      <li><a href="https://arxiv.org" target="_blank">arXiv</a></li>
-      <li><a href="https://scholar.google.com" target="_blank">Google Scholar</a></li>
-      <li><a href="https://www.webofscience.com" target="_blank">Web of Science</a></li>
-      <li><a href="https://www.nature.com" target="_blank">Nature</a></li>
-      <li><a href="https://www.sciencedirect.com" target="_blank">ScienceDirect</a></li>
-    </ul>
-  </div>
+  <!-- 主内容区 -->
+  <main class="grid">
 
-  <div class="group">
-    <h3>出版商 / 期刊</h3>
-    <ul class="group-links">
-      <li><a href="https://www.nature.com" target="_blank">Nature</a></li>
-      <li><a href="https://www.sciencedirect.com" target="_blank">ScienceDirect</a></li>
-      <li>Link 1</li>
-      <li>Link 2</li>
-      <li>Link 3</li>
-      <li>Link 4</li>
-      <li>Link 5</li>
-      <li>Link 6</li>
-      <li>Link 7</li>
-      <li>Link 8</li>
-      <li>Link 9</li>
-    </ul>
-  </div>
-</section>
+    <section class="card">
+      <h3>常用工具</h3>
+      <ul class="group-links">
+        <li><a href="#">Google</a></li>
+        <li><a href="#">GitHub</a></li>
+        <li><a href="#">Overleaf</a></li>
+        <li><a href="#">arXiv</a></li>
+        <li><a href="#">Stack Overflow</a></li>
+        <li><a href="#">Notion</a></li>
+        <li><a href="#">Wikipedia</a></li>
+      </ul>
+    </section>
 
-  <section class="card">
-  <h2>国央企</h2>
+    <section class="card">
+      <h3>学习 / 学术</h3>
+      <ul class="group-links">
+        <li><a href="#">APS</a></li>
+        <li><a href="#">IOP</a></li>
+        <li><a href="#">Nature</a></li>
+        <li><a href="#">Science</a></li>
+        <li><a href="#">IEEE Xplore</a></li>
+        <li><a href="#">Springer</a></li>
+      </ul>
+    </section>
 
-  <div class="group">
-    <h3>江苏央国企</h3>
-    <ul class="group-links">
-      <li><a href="http://www.jsgx.net/index-pc.aspx" target="_blank">江苏国信</a></li>
-      <li><a href="https://jchctalent.jchc.cn/SU670886c21eb8050fc7eab5ad/pb/school.html" target="_blank">江苏交通控股</a></li>
-      <li><a href="https://easternairports.zhaopin.com/zk/#/notice_new?prantMenuid=1362efdb2321a0eb48e6286c7d050877" target="_blank">江苏机场集团</a></li>
-      <li><a href="https://www.meetsoho.cn" target="_blank">江苏苏豪</a></li>
-      <li><a href="https://jsdg.zhaopin.com/zk/#/notice_new?prantMenuid=5fcc7b2c8dcef12e1278433b22f354fe" target="_blank">江苏数据集团</a></li>
-      <li><a href="https://www.baidu.com" target="_blank">百度</a></li>
-      <li><a href="https://www.bing.com" target="_blank">必应</a></li>
-      <li>Link 1</li>
-      <li>Link 2</li>
-      <li>Link 3</li>
-      <li>Link 4</li>
-      <li>Link 5</li>
-      <li>Link 6</li>
-      <li>Link 7</li>
-      <li>Link 8</li>
-      <li>Link 9</li>
-    </ul>
-  </div>
-</section>
+    <!-- 你可以继续加 card -->
 
-  <footer>
-    <p>Static personal portal · Desktop-first</p>
-  </footer>
+  </main>
+
+  <!-- 右侧 To-Do -->
+  <aside class="sidebar">
+    <h2>备忘 / To-Do</h2>
+
+    <div class="todo-input">
+      <input id="todo-text" type="text" placeholder="输入待办事项" />
+      <button id="add-todo">+</button>
+    </div>
+
+    <ul id="todo-list"></ul>
+  </aside>
+
+</div>
+
+<footer class="site-footer">
+  <p>© Personal Portal</p>
+</footer>
+
+<!-- To-Do Logic -->
+<script>
+const input = document.getElementById('todo-text');
+const list = document.getElementById('todo-list');
+const addBtn = document.getElementById('add-todo');
+
+let todos = JSON.parse(localStorage.getItem('todos') || '[]');
+
+function save() {
+  localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function render() {
+  list.innerHTML = '';
+  todos.forEach((t, i) => {
+    const li = document.createElement('li');
+    li.className = t.done ? 'done' : '';
+    li.innerHTML = `
+      <input type="checkbox" ${t.done ? 'checked' : ''}>
+      <span>${t.text}</span>
+    `;
+    li.querySelector('input').onchange = () => {
+      t.done = !t.done;
+      save();
+      render();
+    };
+    list.appendChild(li);
+  });
+}
+
+addBtn.onclick = () => {
+  if (!input.value.trim()) return;
+  todos.push({ text: input.value.trim(), done: false });
+  input.value = '';
+  save();
+  render();
+};
+
+render();
+</script>
 
 </body>
 </html>
