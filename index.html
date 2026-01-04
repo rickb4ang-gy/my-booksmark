@@ -78,25 +78,40 @@ function save() {
 
 function render() {
   list.innerHTML = '';
+
   todos.forEach((t, i) => {
     const li = document.createElement('li');
     li.className = t.done ? 'done' : '';
+
     li.innerHTML = `
       <input type="checkbox" ${t.done ? 'checked' : ''}>
       <span>${t.text}</span>
+      <button class="delete-btn">×</button>
     `;
+
+    // 勾选完成
     li.querySelector('input').onchange = () => {
       t.done = !t.done;
       save();
       render();
     };
+
+    // 删除
+    li.querySelector('.delete-btn').onclick = () => {
+      todos.splice(i, 1);
+      save();
+      render();
+    };
+
     list.appendChild(li);
   });
 }
 
 addBtn.onclick = () => {
-  if (!input.value.trim()) return;
-  todos.push({ text: input.value.trim(), done: false });
+  const text = input.value.trim();
+  if (!text) return;
+
+  todos.push({ text, done: false });
   input.value = '';
   save();
   render();
@@ -104,6 +119,7 @@ addBtn.onclick = () => {
 
 render();
 </script>
+
 
 </body>
 </html>

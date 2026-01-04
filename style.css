@@ -140,3 +140,26 @@ a:hover {
   text-decoration: line-through;
   color: #999;
 }
+
+/* To-Do Delete Button */
+
+#todo-list li {
+  justify-content: space-between;
+}
+
+#todo-list li span {
+  flex: 1;
+}
+
+.delete-btn {
+  border: none;
+  background: none;
+  color: #bbb;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.delete-btn:hover {
+  color: #e5533d;
+}
