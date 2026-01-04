@@ -78,3 +78,18 @@ footer {
   font-size: 12px;
   color: #888;
 }
+/* Group inside card */
+.group {
+  margin-top: 16px;
+}
+
+.group h3 {
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #444;
+  font-weight: 600;
+}
+
+.group ul li {
+  margin: 8px 0;
+}
