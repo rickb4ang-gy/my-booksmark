@@ -1,15 +1,25 @@
 /* ========== Global ========== */
 
+:root {
+  --bg-main: #0f172a;        /* 页面背景（深蓝灰） */
+  --bg-card: #111827;        /* 卡片 / sidebar */
+  --bg-hover: #1e293b;
+  --text-main: #e5e7eb;
+  --text-muted: #9ca3af;
+  --accent: #3b82f6;         /* 蓝色强调 */
+  --border-soft: #1f2937;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: #f5f7fa;
-  color: #333;
+  background: var(--bg-main);
+  color: var(--text-main);
 }
 
 a {
+  color: var(--accent);
   text-decoration: none;
-  color: #1e6bd6;
 }
 
 a:hover {
@@ -21,8 +31,13 @@ a:hover {
 .site-header {
   padding: 24px 0;
   text-align: center;
-  background: #ffffff;
-  border-bottom: 1px solid #e5e7eb;
+  background: #020617;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 22px;
 }
 
 .site-footer {
@@ -30,7 +45,7 @@ a:hover {
   padding: 16px 0;
   text-align: center;
   font-size: 13px;
-  color: #777;
+  color: var(--text-muted);
 }
 
 /* ========== Layout ========== */
@@ -56,16 +71,16 @@ a:hover {
 /* ========== Card ========== */
 
 .card {
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 18px 20px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border-soft);
 }
 
 .card h3 {
   margin: 0 0 12px;
-  font-size: 16px;
-  color: #1e6bd6;
+  font-size: 15px;
+  color: var(--accent);
 }
 
 /* ========== Group Links (Multi-column) ========== */
@@ -83,24 +98,32 @@ a:hover {
   break-inside: avoid;
 }
 
+.group-links a {
+  color: var(--text-main);
+}
+
+.group-links a:hover {
+  color: var(--accent);
+}
+
 /* ========== Sidebar (Sticky To-Do) ========== */
 
 .sidebar {
   position: sticky;
   top: 24px;
-  background: #ffffff;
+  background: var(--bg-card);
   border-radius: 12px;
   padding: 18px 20px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--border-soft);
 }
 
 .sidebar h2 {
   margin: 0 0 12px;
-  font-size: 16px;
-  color: #1e6bd6;
+  font-size: 15px;
+  color: var(--accent);
 }
 
-/* To-Do Input */
+/* ========== To-Do Input ========== */
 
 .todo-input {
   display: flex;
@@ -112,15 +135,26 @@ a:hover {
   flex: 1;
   padding: 6px 8px;
   font-size: 14px;
+  background: #020617;
+  border: 1px solid var(--border-soft);
+  color: var(--text-main);
+}
+
+.todo-input input::placeholder {
+  color: var(--text-muted);
 }
 
 .todo-input button {
   width: 32px;
   font-size: 16px;
   cursor: pointer;
+  background: var(--accent);
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
 }
 
-/* To-Do List */
+/* ========== To-Do List ========== */
 
 #todo-list {
   list-style: none;
@@ -134,32 +168,30 @@ a:hover {
   gap: 8px;
   font-size: 14px;
   margin: 6px 0;
-}
-
-#todo-list li.done span {
-  text-decoration: line-through;
-  color: #999;
-}
-
-/* To-Do Delete Button */
-
-#todo-list li {
   justify-content: space-between;
 }
 
 #todo-list li span {
   flex: 1;
+  color: var(--text-main);
 }
+
+#todo-list li.done span {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* Delete button */
 
 .delete-btn {
   border: none;
   background: none;
-  color: #bbb;
+  color: var(--text-muted);
   font-size: 16px;
   cursor: pointer;
   padding: 0 4px;
 }
 
 .delete-btn:hover {
-  color: #e5533d;
+  color: #ef4444;
 }
